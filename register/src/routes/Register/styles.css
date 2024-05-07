@@ -1,0 +1,115 @@
+#register-form-section {
+    padding: 20px 0;
+}
+
+.register-client-form-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container h3 {
+    font-size: 14px;
+    color: var(--register-color-font-title);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.register-title {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.514);
+    width: 100%;
+}
+
+.register-form h2 {
+    font-size: 16px;
+    color: var(---register-color-font-title);
+    text-transform: uppercase;
+    font-weight: 400;
+    text-align: center;
+}
+
+.register-form-controls-container {
+    width: 100%;
+    display: grid;
+    grid-gap: 20px;
+    margin: 20px 0;
+}
+
+.register-form-control {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    padding: 0 20px;
+    color: var(--register-color-font-title);
+    border-radius: 4px;
+    border: 1px solid var(--register-color-card-border);
+}
+
+.register-form-control:focus {
+    outline: none;
+}
+
+.register-form-control::placeholder {
+    color: var(--register-color-font-placeholder);
+}
+
+.register-form-control[data-dirty="true"][data-invalid="true"] {
+    border: 1px solid var(--register-color-error);
+}
+
+.register-form-control[data-dirty="true"][data-invalid="true"]~div {
+    display: unset;
+}
+
+.register-form-error {
+    color: var(--register-color-error);
+    font-size: 12px;
+    padding-left: 4px;
+    display: none;
+}
+
+.register-textarea {
+    resize: none;
+    height: 128px;
+    padding-top: 10px;
+}
+
+.register-form-select-container {
+    padding: unset;
+}
+
+
+
+
+/* Styles Card */
+.register-card {
+    border: 1px solid var(--register-color-card-border);
+    border-radius: 4px;
+    background-color: var(--register-color-card-bg);
+}
+
+.register-line-bottom {
+    border-bottom: 1px solid var(--register-color-card-border);
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-column {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+}

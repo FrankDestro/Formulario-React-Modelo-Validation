@@ -1,0 +1,50 @@
+.register-header-client {
+    background-color: var(--register-color-bg-theme);
+    color: var(--register-color-font-title-main);
+}
+
+header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    font-size: 16px;
+}
+
+nav a {
+    font-size: 14px;
+}
+
+.register-navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.register-menu-items-container {
+    display: flex;
+}
+
+.register-menu-item {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.register-menu-item p {
+    display: none;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.register-menu-item-active {
+    font-weight: 700;
+}
