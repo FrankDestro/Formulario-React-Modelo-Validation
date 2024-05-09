@@ -23,12 +23,25 @@ function Register() {
     setFormData(newFormData);
   }
 
+  function handelSubmit(event: any) {
+    event.preventDefault();
+
+    const formDataValidated = forms.dirtyAndValidateAll(formData);
+    if (forms.hasAnyInvalid(formDataValidated)) {
+      setFormData(formDataValidated)
+      console.log("campos invalidos.")
+      return;
+    } else {
+      console.log("campos validos.")
+    }
+  }
+
   return (
     <div>
       <main>
         <section id="register-form-section" className="register-container">
           <div className="register-client-form-container">
-            <form className="register-card register-form title-form">
+            <form className="register-card register-form title-form" onSubmit={handelSubmit}>
               <div className='register-title'>
                 <h2>Registro de Cliente</h2>
               </div>
