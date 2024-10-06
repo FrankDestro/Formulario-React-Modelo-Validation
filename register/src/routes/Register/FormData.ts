@@ -1,3 +1,4 @@
+
 const formDataStructure = {
   nome: {
     value: "",
@@ -10,21 +11,30 @@ const formDataStructure = {
     value: "",
     id: "rg",
     name: "rg",
-    type: "number",
+    type: "text",
     placeholder: "RG",
+    validation : function (value : string) {
+      return /^(\d{1,2}\.?)(\d{3}\.?)(\d{3})(\-?[0-9Xx])$/.test(value);
+    },
+    message : "Favor digitar um RG válido"
   },
   cpf: {
     value: "",
     id: "cpf",
     name: "cpf",
-    type: "number",
+    type: "cpf",
     placeholder: "CPF",
+    maxLength : "14",
+    validation : function (value : string) {
+      return/^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}|[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2})$/.test(value)
+    },
+    message : "Cpf invalido, favor entrar com um cpf válido"
   },
   birthDate: {
     value: "",
     id: "birthDate",
     name: "birthDate",
-    type: "number",
+    type: "date",
     placeholder: "Data Nascimento",
   },
   endereco: {
@@ -52,15 +62,17 @@ const formDataStructure = {
     value: "",
     id: "telefone",
     name: "telefone",
-    type: "number",
+    type: "telefone",
     placeholder: "Telefone",
+    maxLength : "14",
   },
   celular: {
     value: "",
     id: "celular",
     name: "celular",
-    type: "number",
+    type: "text",
     placeholder: "Celular",
+    maxLength : "15",
   },
   email: {
     value: "",

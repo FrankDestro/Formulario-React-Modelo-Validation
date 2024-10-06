@@ -1,20 +1,20 @@
 
-function FormInput(props: any) {
+function FormRadio(props: any) {
 
   const {
     validation,
     invalid = "false",
     dirty = "false",
     onTurnDirty,
-    ...inputProps } = props;
+    ...radioProps } = props;
 
   function handleBlur() {
     onTurnDirty(props.name)
   }
-  
+
   return (
     <input
-      {...inputProps}
+      {...radioProps}
       data-invalid={invalid}
       onBlur={handleBlur}
       data-dirty={dirty}
@@ -22,6 +22,6 @@ function FormInput(props: any) {
   )
 }
 
-export default FormInput
+export default FormRadio
 
 

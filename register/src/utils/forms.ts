@@ -1,3 +1,4 @@
+
 export function update(inputs: any, name: string, newValue: any) {
     return { ...inputs, [name]: { ...inputs[name], value: newValue } };
 }
@@ -77,3 +78,4 @@ export function hasAnyInvalid(inputs: any) {
     }
     return false;
 }
+

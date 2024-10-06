@@ -85,8 +85,9 @@
     padding: unset;
 }
 
-
-
+.dsc-form-select-container {
+    padding: unset;
+  }
 
 /* Styles Card */
 .register-card {

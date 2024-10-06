@@ -2,19 +2,73 @@ import { faSave } from '@fortawesome/free-solid-svg-icons';
 import { faBackspace } from '@fortawesome/free-solid-svg-icons/faBackspace';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@mui/material';
-import FormInput from '../../components/FormComponents/FormInput';
-import './styles.css';
 import { useState } from 'react';
-import * as forms from "../../utils/forms";
-import formDataStructure from "../../routes/Register/FormData";
+import FormInput from '../../components/FormComponents/FormInput';
+import FormSelect from '../../components/FormComponents/FormSelect';
+import { selectStyles } from '../../components/FormComponents/FormSelect/select';
 import FormTextArea from '../../components/FormComponents/FormTextArea';
+import formDataStructure from "../../routes/Register/FormData";
+import * as forms from "../../utils/forms";
+import { formatLandLineNumber, formatMobileNumber, formatarCPF, maskrg } from '../../utils/functionsFormart';
+import './styles.css';
 
 function Register() {
+
+  const estadosDoBrasil = [
+    { value: 'AC', label: 'Acre' },
+    { value: 'AL', label: 'Alagoas' },
+    { value: 'AP', label: 'Amapá' },
+    { value: 'AM', label: 'Amazonas' },
+    { value: 'BA', label: 'Bahia' },
+    { value: 'CE', label: 'Ceará' },
+    { value: 'DF', label: 'Distrito Federal' },
+    { value: 'ES', label: 'Espírito Santo' },
+    { value: 'GO', label: 'Goiás' },
+    { value: 'MA', label: 'Maranhão' },
+    { value: 'MT', label: 'Mato Grosso' },
+    { value: 'MS', label: 'Mato Grosso do Sul' },
+    { value: 'MG', label: 'Minas Gerais' },
+    { value: 'PA', label: 'Pará' },
+    { value: 'PB', label: 'Paraíba' },
+    { value: 'PR', label: 'Paraná' },
+    { value: 'PE', label: 'Pernambuco' },
+    { value: 'PI', label: 'Piauí' },
+    { value: 'RJ', label: 'Rio de Janeiro' },
+    { value: 'RN', label: 'Rio Grande do Norte' },
+    { value: 'RS', label: 'Rio Grande do Sul' },
+    { value: 'RO', label: 'Rondônia' },
+    { value: 'RR', label: 'Roraima' },
+    { value: 'SC', label: 'Santa Catarina' },
+    { value: 'SP', label: 'São Paulo' },
+    { value: 'SE', label: 'Sergipe' },
+    { value: 'TO', label: 'Tocantins' }
+  ];
+
+
 
   const [formData, setFormData] = useState(formDataStructure);
 
   function handleInputChange(event: any) {
-    const result = forms.updateAndValidate(formData, event.target.name, event.target.value)
+
+    let formattedValue;
+    switch (event.target.name) {
+      case "celular":
+        formattedValue = formatMobileNumber(event.target.value);
+        break;
+      case "telefone":
+        formattedValue = formatLandLineNumber(event.target.value);
+        break;
+      case "cpf":
+        formattedValue = formatarCPF(event.target.value);
+        break;
+      case "rg":
+        formattedValue = maskrg(event.target.value)
+        break;
+      default:
+        formattedValue = event.target.value;
+    }
+
+    const result = forms.updateAndValidate(formData, event.target.name, formattedValue);
     setFormData(result);
   }
 
@@ -72,6 +126,7 @@ function Register() {
                         onChange={handleInputChange}
                         onTurnDirty={handleTurnDirty}
                       />
+                      <div className="register-form-error">{formData.rg.message}</div>
                     </div>
                     <div className='col-sm'>
                       <h3>CPF: </h3>
@@ -81,6 +136,7 @@ function Register() {
                         onChange={handleInputChange}
                         onTurnDirty={handleTurnDirty}
                       />
+                      <div className="register-form-error">{formData.cpf.message}</div>
                     </div>
                     <div className='col-sm'>
                       <h3>Data de Nasc: </h3>
@@ -105,7 +161,6 @@ function Register() {
                     </div>
                   </div>
 
-
                   <div className="row">
                     <div className='col-sm'>
                       <h3>Cidade: </h3>
@@ -118,15 +173,14 @@ function Register() {
                     </div>
                     <div className='col-sm'>
                       <h3>Estado: </h3>
-                      <FormInput
-                        {...formData.cidade}
-                        onChange={handleInputChange}
+                      <FormSelect
+                        className="register-form-control dsc-form-select-container"
+                        styles={selectStyles}
+                        options={estadosDoBrasil}
                         onTurnDirty={handleTurnDirty}
-                        className="register-form-control"
                       />
                     </div>
                   </div>
-
 
                   <div className="row">
                     <div className='col-sm'>
@@ -199,11 +253,8 @@ function Register() {
                       <div className="register-form-error">{formData.habilidades.message}</div>
                     </div>
                   </div>
-
                 </div>
               </div>
-
-
               <div>
                 <div className="row container-button">
                   <div className='col-sm'>
@@ -223,7 +274,6 @@ function Register() {
                   </div>
 
                   <div className='col-sm'>
-
                     <Button
                       variant="contained"
                       color="error"
